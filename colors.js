@@ -38,8 +38,8 @@ function convertToHSL(colorRGB) {
         }
     }
 
-    let max = colorRGBOrdened[2] / 255;
-    let min = colorRGBOrdened[0] / 255;
+    let max = color[2] / 255;
+    let min = color[0] / 255;
     let r = colorRGB.red / 255;
     let g = colorRGB.green / 255;
     let b = colorRGB.blue / 255;
