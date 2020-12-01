@@ -79,4 +79,54 @@ function convertToHSL(colorRGB) {
     return colorHSL;
 }
 
-export { generateColorRGB, convertToHSL }
+function convertToHEX(colorRGB) {
+    let colorHEX = '#';
+
+    let color = [
+        colorRGB.red,
+        colorRGB.green,
+        colorRGB.blue
+    ]
+
+    let temp = [];
+
+    for (let i = 0; i < color.length; i++) {
+        let indivisibleColor = indivisibleValue(color[i]);        
+
+        if (indivisibleColor < 1) {
+            indivisibleColor *= 16;
+        }
+
+        temp.push(Math.floor(indivisibleColor));
+        temp.push(Math.floor((indivisibleColor - temp[temp.length - 1]) * 16));     
+    } 
+
+    for (let j = 0; j < temp.length; j++) {
+        if (temp[j] > 9) {
+            switch (temp[j] - 9) {
+                case 1: temp[j] = 'A'; break;
+                case 2: temp[j] = 'B'; break;
+                case 3: temp[j] = 'C'; break;
+                case 4: temp[j] = 'D'; break;
+                case 5: temp[j] = 'E'; break;
+                case 6: temp[j] = 'F'; break;
+            }
+        }
+    }
+
+    for (let j = 0; j < temp.length; j++) {
+        colorHEX += temp[j];
+    }
+
+    return colorHEX;
+}
+
+function indivisibleValue(value) {
+    if (value >= 15) {
+        return indivisibleValue(value / 16)
+    } else {
+        return value;
+    }
+}
+
+export { generateColorRGB, convertToHSL, convertToHEX }

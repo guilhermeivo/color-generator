@@ -1,4 +1,4 @@
-import { generateColorRGB, convertToHSL } from './colors.js'
+import { generateColorRGB, convertToHSL, convertToHEX } from './colors.js'
 
 let generateColor = document.querySelectorAll('.color');
 let hexNumbers = document.querySelector('#hex');
@@ -16,12 +16,15 @@ for (let i = 0; i < generateColor.length; i++) {
 function setColorBox() {
     let colorRGB = generateColorRGB();
     let colorHSL = convertToHSL(colorRGB);
+    let colorHEX = convertToHEX(colorRGB);
 
     for (let j = 0; j < generateColor.length; j++) {
         generateColor[j].style.background = `rgb(${colorRGB.red},${colorRGB.green},${colorRGB.blue})`;
     }
 
-    hexNumbers.children[1].textContent = "#121212";
+    hexNumbers.children[1].textContent = `${colorHEX}`;
     rgbNumbers.children[1].textContent = `${colorRGB.red}, ${colorRGB.green}, ${colorRGB.blue}`;
     hslNumbers.children[1].textContent = `${colorHSL.hue}, ${colorHSL.saturation}%, ${colorHSL.lightness}%`;   
+
+    convertToHEX(colorRGB);
 }
