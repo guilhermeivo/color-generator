@@ -1,10 +1,18 @@
-function generateColorRGB() {
-    let colorRGB = {
-        red: 0,
-        green: 0,
-        blue: 0
-    }
+let colorRGB = {
+    red: 0,
+    green: 0,
+    blue: 0
+}
 
+let colorHSL = {
+    hue: 0,
+    saturation: 0,
+    lightness: 0
+}
+
+let colorHEX = '#';
+
+function generateColorRGB() {
     colorRGB.red = Math.floor(Math.random() * 255);
     colorRGB.green = Math.floor(Math.random() * 255);
     colorRGB.blue = Math.floor(Math.random() * 255);
@@ -12,26 +20,20 @@ function generateColorRGB() {
     return colorRGB;
 }
 
-function convertToHSL(colorRGB) {
-    let colorHSL = {
-        hue: 0,
-        saturation: 0,
-        lightness: 0
-    }
-
-    let colorRGBOrdened = [
+function convertToHSL(colorRGB) {   
+    let color = [
         colorRGB.red,
         colorRGB.green,
         colorRGB.blue
     ]
 
     // Organized colors (min, max)
-    for (let i = 0; i < colorRGBOrdened.length; i++) {
-        for (let j = 0; j < colorRGBOrdened.length - 1; j++) {
-            if (colorRGBOrdened[j] > colorRGBOrdened[j + 1]) {
-                let aux = colorRGBOrdened[j];
-                colorRGBOrdened[j] = colorRGBOrdened[j + 1];
-                colorRGBOrdened[j + 1] = aux;
+    for (let i = 0; i < color.length; i++) {
+        for (let j = 0; j < color.length - 1; j++) {
+            if (color[j] > color[j + 1]) {
+                let aux = color[j];
+                color[j] = color[j + 1];
+                color[j + 1] = aux;
             }
         }
     }
@@ -71,6 +73,7 @@ function convertToHSL(colorRGB) {
                 break;
         }
 
+        // Formating
         colorHSL.lightness = Math.floor(colorHSL.lightness * 100)
         colorHSL.saturation = Math.floor(colorHSL.saturation * 100)
         colorHSL.hue = Math.floor(colorHSL.hue * 60)
@@ -79,9 +82,7 @@ function convertToHSL(colorRGB) {
     return colorHSL;
 }
 
-function convertToHEX(colorRGB) {
-    let colorHEX = '#';
-
+function convertToHEX(colorRGB) {   
     let color = [
         colorRGB.red,
         colorRGB.green,
