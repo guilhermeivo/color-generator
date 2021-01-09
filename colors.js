@@ -83,6 +83,8 @@ function convertToHSL(colorRGB) {
 }
 
 function convertToHEX(colorRGB) {   
+    let colorHEX = '#';
+
     let color = [
         colorRGB.red,
         colorRGB.green,
